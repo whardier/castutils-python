@@ -13,8 +13,8 @@ from hypothesis.strategies import (
 )
 import pytest
 
-from transformer.builtins import as_str, as_str_or, to_str, to_str_or
-from transformer.exceptions import TransformError
+from castutils.builtins import as_str, as_str_or, to_str, to_str_or
+from castutils.exceptions import TransformError
 
 
 @given(text())
