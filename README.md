@@ -1,2 +1,3 @@
-# castutils-python
-Typing friendly value casting utilities
+# Transformer
+
+Variable transformation and casting utilities (Python)
