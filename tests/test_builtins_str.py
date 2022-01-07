@@ -13,7 +13,6 @@ from hypothesis.strategies import (
 import pytest
 
 from castutils.builtins.strings import as_str, as_str_or, to_str
-from castutils.exceptions import TransformError
 
 
 @given(text())
@@ -64,5 +63,5 @@ def test_builtin_str_to_str__uuids__form_short(obj: UUID, rand: Random) -> None:
     lists(integers(min_value=128, max_value=255), min_size=10, max_size=20).map(bytes)
 )
 def test_builtin_str_to_str__bytes__non_ascii(obj: UUID) -> None:
-    with pytest.raises(TransformError):
+    with pytest.raises(ValueError):
         to_str(obj, encoding="ascii")

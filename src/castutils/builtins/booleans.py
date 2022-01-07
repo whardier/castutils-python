@@ -1,7 +1,6 @@
 from typing import Any, Optional, Union
 
 from castutils.builtins.strings import to_str
-from castutils.exceptions import CastError, TransformError
 from castutils.types import GenericType
 
 
@@ -10,14 +9,14 @@ def as_bool(obj: Any, /) -> bool:
     if isinstance(obj, bool):
         return obj
     else:
-        raise CastError("Object is not of instance bool")
+        raise TypeError("Object is not of instance bool")
 
 
-def as_bool_or(obj: Any, default: GenericType, /) -> Union[bool, GenericType]:
+def as_bool_or(obj: Any, fallback: GenericType, /) -> Union[bool, GenericType]:
     try:
         return as_bool(obj)
-    except CastError:
-        return default
+    except TypeError:
+        return fallback
 
 
 def to_bool(
@@ -30,21 +29,22 @@ def to_bool(
     try:
         if isinstance(obj, bool):
             return obj
-        elif isinstance(obj, str):
-            if isinstance(obj, bytes):
-                obj = to_str(obj, encoding=encoding, errors=errors)
+        elif isinstance(obj, (str, bytes)):
+            obj = to_str(obj, encoding=encoding, errors=errors)
             if obj in ("y", "yes", "t", "true", "on", "word", "yah", "yay", "1"):
                 return True
             elif obj in ("n", "no", "f", "false", "off", "nope", "nah", "nay", "0"):
                 return False
+        elif isinstance(obj, int):
+            return bool(obj)
         return bool(obj)
-    except Exception as catchall_exception:
-        raise TransformError("Object cannot transform to bool") from catchall_exception
+    except Exception as exception:
+        raise ValueError("Object cannot transform to bool") from exception
 
 
 def to_bool_or(
     obj: Any,
-    default: Optional[bool] = None,
+    fallback: Optional[bool] = None,
     /,
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
@@ -52,7 +52,5 @@ def to_bool_or(
 
     try:
         return to_bool(obj, encoding=encoding, errors=errors)
-    except TransformError as transform_exception:
-        if isinstance(default, bool) or default is None:
-            return default
-        raise TransformError("Default is not of type int") from transform_exception
+    except ValueError as exception:
+        return fallback
