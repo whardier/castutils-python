@@ -13,7 +13,7 @@ from hypothesis.strategies import (
 )
 import pytest
 
-from castutils.builtins import as_str, as_str_or, to_str, to_str_or
+from castutils.builtins.strings import as_str, as_str_or, to_str
 from castutils.exceptions import TransformError
 
 
