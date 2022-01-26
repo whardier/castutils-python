@@ -52,5 +52,5 @@ def to_bool_or(
 
     try:
         return to_bool(obj, encoding=encoding, errors=errors)
-    except ValueError as exception:
+    except ValueError:
         return fallback
