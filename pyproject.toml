@@ -22,6 +22,9 @@ classifiers = [
   "Operating System :: OS Independent",
 ]
 
+[tool.poetry.urls]
+"Funding" = "https://github.com/sponsors/whardier"
+
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
