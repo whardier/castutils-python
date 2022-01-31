@@ -4,15 +4,28 @@ version = "0.0.0"
 description = "Variable transformation and casting utilities (Python)"
 authors = ["Shane Spencer <305301+whardier@users.noreply.github.com>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/whardier/castutils-python"
+repository = "https://github.com/whardier/castutils-python"
+keywords = [
+  "cast",
+  "coerce",
+  "coercion",
+  "transform",
+  "transformation",
+  "typing",
+  "typecast",
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+]
 
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
 style = "semver"
-
-[tool.poetry-dynamic-versioning.substitution]
-files = ["src/_castutils_version.py"]
-patterns = ["(^version\\s*=\\s*['\"])[^'\"]*(['\"])"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
