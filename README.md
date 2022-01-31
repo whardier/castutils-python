@@ -1,3 +1,3 @@
-# Transformer
+# Castutils (Python)
 
-Variable transformation and casting utilities (Python)
+Variable transformation and casting utilities
